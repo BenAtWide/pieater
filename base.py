@@ -1,0 +1,1 @@
+# base class for things that supply data
