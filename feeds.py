@@ -5,18 +5,6 @@ import feedparser
 import requests
 from datetime import datetime, timedelta
 
-rss_feed = "https://www.theguardian.com/uk/rss"
-
-location=('50.8425', '-0.135')
-
-try:
-    wu_apikey = os.environ['WU_APIKEY']
-except KeyError:
-    sys.exit("Set WU_APIKEY environment variable")
-    
-cached =[]
-wu_url = "http://api.wunderground.com/api/{}/conditions/q/{},{}.json".format(wu_apikey, location[0], location[1])
-wu_forecast = "http://api.wunderground.com/api/{}/forecast/q/{},{}.json".format(wu_apikey, location[0], location[1])
 
 
 class BaseData(object):
@@ -98,3 +86,20 @@ class WeatherFeed(BaseData):
 
 
 
+def main():
+    rss_feed = "https://www.theguardian.com/uk/rss"
+    location=('50.8425', '-0.135')
+    
+    try:
+        wu_apikey = os.environ['WU_APIKEY']
+    except KeyError:
+        sys.exit("Set WU_APIKEY environment variable")
+    
+    wu_url = "http://api.wunderground.com/api/{}/conditions/q/{},{}.json".format(wu_apikey, location[0], location[1])
+    
+    wu_forecast = "http://api.wunderground.com/api/{}/forecast/q/{},{}.json".format(wu_apikey, location[0], location[1])
+    
+
+    
+if __name__ == '__main__':
+    main()
